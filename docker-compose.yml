@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  sarrada:
+    container_name: sarradarchive
+    build:
+      context: ./
+    command: /run/secrets/
+    ports:
+      - 4252:4252
+      - 8058:8058
+    secrets:
+        - conf_sarrada
+    environment:
+      - ORTHANC_NAME=Sarrada_Archive
+      #- BASE_DIRECTORY=D:\\Hilare\\projets\\Sarrada\\SarradaArchive\\exemple_docker
+    volumes:
+        #- ${PWD}/config/sarrada.json:/run/secrets/sarrada.json
+        - "D:\\Hilare\\projets\\Sarrada\\SarradaArchive\\exemple_docker/config/sarrada.json:/run/secrets/sarrada.json"
+        - "D:\\hilare\\projets\\Sarrada\\SarradaArchive\\exemple_docker/plugins:/plugins"
+secrets:
+  conf_sarrada:
+    file: ./sarrada.json
+    #volumes:
+     # - /path/to/config:/etc/orthanc
+     #   - ./config:/configArchive
+     # - ./plugins:/
